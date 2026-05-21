@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="GameAnalyzer.vcxproj" Id="3cdd9e73-df6e-4aa9-9856-e23c13bd2dc6" />
+</Solution>
