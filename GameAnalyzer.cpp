@@ -1,13 +1,19 @@
 // GameAnalyzer.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
 //
-#include <iostream>
-#include <algorithm>
-#include <cctype>
-#include <cstring>
-#include <sstream>
-#include <string>
-#include <windows.h>
-#include <psapi.h>
+
+#include "Header.h"
+
+// If compiling as 64-bit
+#ifdef _M_X64
+#pragma comment (lib, "detoursx64.lib")
+#endif // _M_X64
+
+
+// If compiling as 32-bit
+#ifdef _M_IX86
+#pragma comment (lib, "detoursx86.lib")
+#endif // _M_IX86
+
 
 const bool affiche_process_handle = 1;
 const bool affiche_pid = 1;
@@ -30,6 +36,8 @@ bool ContainsIgnoreCase(const std::string& text, const std::string& search)
 {
     return ToLower(text).find(ToLower(search)) != std::string::npos;
 }
+
+
 
 int main(int argc, char** argv)
 {
@@ -69,6 +77,7 @@ int main(int argc, char** argv)
                 if (affiche_process_handle || affiche_pid)
                     output << "--->";
                 output << imageFileName << std::endl;
+                bool ret_analyze_process_handle = analyze_process_handle(hProcess);
             }
             CloseHandle(hProcess);
         }
